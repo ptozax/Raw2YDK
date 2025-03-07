@@ -2,11 +2,11 @@ import { useState, useEffect } from 'react'
 
 function R2t() {
     const [text, setText] = useState("");
-    const [dowload_deck, setDownload_deck] = useState("");
+
     //let dowload_deck = "";
     const [clicked, setClicked] = useState(false);
     const [Cards, setCards] = useState([]);
-
+    const [dowload_deck, setDownload_deck] = useState("");
 
 
 
