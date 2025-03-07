@@ -6,6 +6,6 @@ import R2t from './raw_to_ydk/r2t.jsx'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <App />
+    <R2t />
   </StrictMode>,
 )
