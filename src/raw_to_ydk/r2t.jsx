@@ -1,7 +1,12 @@
-import { useState } from 'react'
+import { useState ,useEffect} from 'react'
 
 function R2t() {
     const [text, setText] = useState("");
+    const [Cards, setCards] = useState([]);
+
+
+
+
     const downloadTxtFile = () => {
         const blob = new Blob([text], { type: "text/plain" });
         const link = document.createElement("a");
@@ -12,6 +17,24 @@ function R2t() {
         document.body.removeChild(link);
     };
 
+
+
+    useEffect(() => {
+          fetch("https://db.ygoprodeck.com/api/v7/cardinfo.php")
+            .then((response) => response.json())
+            .then((data) => {
+              console.log("Yu-Gi-Oh! Card Data:", data);
+              setCards(data.data);
+            })
+            .catch((error) => {
+              console.error("Error fetching card data:", error);
+            });
+
+
+
+          
+        }, []);
+  console.log(Cards);
     return (
 
 
