@@ -6,9 +6,9 @@ function R2t() {
     //let dowload_deck = "";
     const [clicked, setClicked] = useState(false);
     const [Cards, setCards] = useState([]);
-    const [dowload_deck, setDownload_deck] = useState("");
+    
  const [text, setText] = useState("");
-
+const [dowload_deck, setDownload_deck] = useState("");
 
     const downloadTxtFile = () => {
         const blob = new Blob([dowload_deck], { type: "text/plain" });
