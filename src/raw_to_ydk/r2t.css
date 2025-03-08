@@ -1,0 +1,23 @@
+.background{
+    background-color: #000000;
+}
+
+h1{
+    color: white;
+    text-align: center;
+}
+
+textarea{
+    margin-left: 40%;
+    width: 20%;
+    height: 100px;
+    border-radius: 5px;
+}
+
+.btt{
+    margin-top: 10px;
+    margin-left: 45%;
+    width: 150px;
+    height: 80px;
+    background-color: #1E3E62;
+}
