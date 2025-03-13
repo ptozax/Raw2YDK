@@ -1,76 +1,11 @@
-
-.app {
-  display: flex;
-  justify-content: center;
-  /* align-items: center; */
-  /* height: 100vh; */
-
-}
-
-.container {
-  display: flex;
-  width: 100%;
-}
-
 .selected-card {
-  flex: 1;
-  padding: 20px;
-  border-right: 1px solid #ccc;
-  position: fixed;
-  top: 10%;
-  /* ติดบนสุดของหน้าจอ */
-  left: 0;
-  /* อยู่ด้านซ้าย */
-  width: 40%;
-  /* หรือกำหนดขนาดตามต้องการ */
-  height: 90%;
-  /* ความสูงเต็มหน้าจอ */
-  overflow-y: auto;
-  /* เพิ่ม scroll ถ้าข้อมูลเกิน */
   background: white;
-  /* ป้องกันซ้อนกับเนื้อหาด้านหลัง */
-  padding: 20px;
-  border-right: 1px solid #ccc;
   box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
-
 }
-
 
 .selected-img {
-
-  max-width: 30%;
-
-
-}
-
-.card-list {
-  flex: 1;
-  padding: 10px;
-}
-
-input {
-  width: 100%;
-  padding: 10px;
-  margin-bottom: 20px;
+  max-width: 100%;
   border-radius: 4px;
-  border: 1px solid #ccc;
-}
-
-label {
-  margin-right: 10px;
-}
-
-select {
-  padding: 10px;
-  margin-bottom: 20px;
-  border-radius: 4px;
-  border: 1px solid #ccc;
-}
-
-.card-thumbnails {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
-  gap: 10px;
 }
 
 .card-thumbnail {
@@ -82,24 +17,8 @@ select {
   transform: scale(1.1);
 }
 
-.card-thumbnail img {
-  width: 100%;
-  height: auto;
-  border-radius: 4px;
+.card-thumbnails {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+  gap: 10px;
 }
-/* 
-div {
-
-  border-color: blueviolet;
-  border-width: 2px;
-  border-style: solid;
-
-}
-
-#check {
-
-  border-color: rgb(226, 43, 52);
-  border-width: 2px;
-  border-style: solid;
-
-} */
