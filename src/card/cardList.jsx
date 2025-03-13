@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, use } from "react";
 import thtext from "./db/cards.json";
 import { useGlobalContext } from "../global_context.jsx";
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -18,7 +18,7 @@ function CardList() {
 
         const filteredCards = Cards.filter((card) => {
                 const matchesSearch = card.name.toLowerCase().includes(searchQuery.toLowerCase());
-                const matchesType = selectedType === 'All' || card.type === selectedType;
+                const matchesType = selectedType === 'All' || card.type.includes(selectedType) ;
                 return matchesSearch && matchesType;
         }).slice(0, 200);
 
@@ -27,20 +27,19 @@ function CardList() {
         };
 
         function th_desc(id) {
-                console.log(id);
                 let desc = thtext.find(item => item.id === id);
-                console.log(desc);
                 if (desc) {
                         return desc.th;
                 } else {
                         return "No description available";
                 }
-
         }
 
+ 
 
-
-
+        setTimeout(() => {
+                console.log("->>",[...new Set(Cards.map(item => item.type))]);
+        }, 1000);
         return (
                 <>
 
@@ -52,7 +51,7 @@ function CardList() {
                                                         <div>
                                                                 <h2>{selectedCard.name}</h2>
                                                                 <img className="selected-img" src={selectedCard.card_images[0].image_url_small} alt={selectedCard.name} />
-                                                                 <p><strong>Type:</strong> {selectedCard.type}</p>
+                                                                <p><strong>Type:</strong> {selectedCard.type}</p>
                                                                 <p><strong>Description:</strong> {selectedCard.desc}</p>
                                                                 <p><strong>TH-Description:</strong> {th_desc(selectedCard.id)}</p>
                                                         </div>
@@ -79,6 +78,7 @@ function CardList() {
                                                                 <option value="All">All</option>
                                                                 <option value="Monster">Monster</option>
                                                                 <option value="Spell">Spell</option>
+                                                                <option value="Trap">Trap</option>
                                                         </select>
                                                 </div>
                                                 <div className="card-thumbnails">
@@ -100,7 +100,7 @@ function CardList() {
 
 
 
-                
+
         );
 }
 
