@@ -90,7 +90,7 @@ function CardList() {
                                                                 <div
                                                                         key={card.id}
                                                                         onClick={() => handleCardSelect(card)}
-                                                                        className=" mb-3"
+                                                                        className="card-thumbnail "
                                                                 >
                                                                         <img src={card.card_images[0].image_url_small} alt={card.name} className="img-fluid" />
                                                                 </div>
