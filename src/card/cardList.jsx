@@ -16,7 +16,9 @@ function CardList() {
                 setSelectedCard(card);
         };
 
-        const filteredCards = Cards.filter((card) => {
+        const shuffledCards = shuffleArray([...Cards]);
+
+        const filteredCards = shuffledCards.filter((card) => {
                 const matchesSearch = card.name.toLowerCase().includes(searchQuery.toLowerCase());
                 const matchesType = selectedType === 'All' || card.type.includes(selectedType) ;
                 return matchesSearch && matchesType;
@@ -35,7 +37,13 @@ function CardList() {
                 }
         }
 
- 
+        function shuffleArray(array) {
+                for (let i = array.length - 1; i > 0; i--) {
+                    const j = Math.floor(Math.random() * (i + 1));
+                    [array[i], array[j]] = [array[j], array[i]]; // Swap elements
+                }
+                return array;
+            }
 
         setTimeout(() => {
                 console.log("->>",[...new Set(Cards.map(item => item.type))]);
