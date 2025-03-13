@@ -1,19 +1,81 @@
 import { useState, useEffect } from "react";
 import thtext from "./db/cards.json";
 import { useGlobalContext } from "../global_context.jsx";
-
+import './cardList.css';
 
 function CardList() {
-        const { Cards, setCards} = useGlobalContext();
+        const { Cards, setCards } = useGlobalContext();
 
 
-console.log("cards",Cards);
-    return (
-        <>
-<h1>Test</h1>
+        const [selectedCard, setSelectedCard] = useState(null);
+        const [searchQuery, setSearchQuery] = useState('');
+        const [selectedType, setSelectedType] = useState('All');
 
-        </>)
+        const handleCardSelect = (card) => {
+                setSelectedCard(card);
+        };
 
+        const filteredCards = Cards.filter((card) => {
+                const matchesSearch = card.name.toLowerCase().includes(searchQuery.toLowerCase());
+                const matchesType = selectedType === 'All' || card.type === selectedType;
+                return matchesSearch && matchesType;
+        }).slice(0, 20);
+
+        const handleTypeChange = (e) => {
+                setSelectedType(e.target.value);
+        };
+
+        return (
+                <>
+
+                        <div className="app">
+                                <div className="container">
+                                        {/* Left Side: Selected Card */}
+                                        <div className="selected-card">
+                                                {selectedCard ? (
+                                                        <div>
+                                                                <h2>{selectedCard.name}</h2>
+                                                                <img src={selectedCard.card_images[0].image_url_small} alt={selectedCard.name} />
+                                                                 <p><strong>Type:</strong> {selectedCard.type}</p>
+                                                                <p><strong>Description:</strong> {selectedCard.desc}</p>
+                                                        </div>
+                                                ) : (
+                                                        <p>Select a card to see its details.</p>
+                                                )}
+                                        </div>
+
+                                        {/* Right Side: Search and Card List */}
+                                        <div className="card-list">
+                                                <input
+                                                        type="text"
+                                                        placeholder="Search for a card..."
+                                                        value={searchQuery}
+                                                        onChange={(e) => setSearchQuery(e.target.value)}
+                                                />
+                                                <div>
+                                                        <label htmlFor="card-type">Filter by Type: </label>
+                                                        <select id="card-type" value={selectedType} onChange={handleTypeChange}>
+                                                                <option value="All">All</option>
+                                                                <option value="Monster">Monster</option>
+                                                                <option value="Spell">Spell</option>
+                                                        </select>
+                                                </div>
+                                                <div className="card-thumbnails">
+                                                        {filteredCards.map((card) => (
+                                                                <div
+                                                                        key={card.id}
+                                                                        onClick={() => handleCardSelect(card)}
+                                                                        className="card-thumbnail"
+                                                                >
+                                                                        <img src={card.card_images[0].image_url_small} alt={card.name} />
+                                                                </div>
+                                                        ))}
+                                                </div>
+                                        </div>
+                                </div>
+                        </div>
+                </>
+        );
 }
 
 export default CardList;
