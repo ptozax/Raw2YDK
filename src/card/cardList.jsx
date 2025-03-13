@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import thtext from "./db/cards.json";
 import { useGlobalContext } from "../global_context.jsx";
+import 'bootstrap/dist/css/bootstrap.min.css';
 import './cardList.css';
 
 function CardList() {
@@ -75,6 +76,11 @@ function CardList() {
                                 </div>
                         </div>
                 </>
+
+
+
+
+                
         );
 }
 
