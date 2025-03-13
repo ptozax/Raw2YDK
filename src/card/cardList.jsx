@@ -20,11 +20,26 @@ function CardList() {
                 const matchesSearch = card.name.toLowerCase().includes(searchQuery.toLowerCase());
                 const matchesType = selectedType === 'All' || card.type === selectedType;
                 return matchesSearch && matchesType;
-        }).slice(0, 20);
+        }).slice(0, 200);
 
         const handleTypeChange = (e) => {
                 setSelectedType(e.target.value);
         };
+
+        function th_desc(id) {
+                console.log(id);
+                let desc = thtext.find(item => item.id === id);
+                console.log(desc);
+                if (desc) {
+                        return desc.th;
+                } else {
+                        return "No description available";
+                }
+
+        }
+
+
+
 
         return (
                 <>
@@ -36,17 +51,22 @@ function CardList() {
                                                 {selectedCard ? (
                                                         <div>
                                                                 <h2>{selectedCard.name}</h2>
-                                                                <img src={selectedCard.card_images[0].image_url_small} alt={selectedCard.name} />
+                                                                <img className="selected-img" src={selectedCard.card_images[0].image_url_small} alt={selectedCard.name} />
                                                                  <p><strong>Type:</strong> {selectedCard.type}</p>
                                                                 <p><strong>Description:</strong> {selectedCard.desc}</p>
+                                                                <p><strong>TH-Description:</strong> {th_desc(selectedCard.id)}</p>
                                                         </div>
                                                 ) : (
                                                         <p>Select a card to see its details.</p>
                                                 )}
                                         </div>
+                                        <div className="col-md-5">
+
+
+                                        </div>
 
                                         {/* Right Side: Search and Card List */}
-                                        <div className="card-list">
+                                        <div className="card-list" >
                                                 <input
                                                         type="text"
                                                         placeholder="Search for a card..."
