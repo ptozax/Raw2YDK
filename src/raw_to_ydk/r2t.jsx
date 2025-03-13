@@ -1,21 +1,23 @@
 import { useState, useEffect } from "react";
+import { useGlobalContext } from "../global_context.jsx";
 
 function R2t() {
     const [text, setText] = useState("");
-    const [Cards, setCards] = useState([]);
+    // const [Cards, setCards] = useState([]);
+    const { Cards, setCards} = useGlobalContext();
     const [dowload_deck, setDownload_deck] = useState("");
 
-    useEffect(() => {
-        fetch("https://db.ygoprodeck.com/api/v7/cardinfo.php")
-            .then((response) => response.json())
-            .then((data) => {
-                console.log("Yu-Gi-Oh! Card Data:", data);
-                setCards(data.data);
-            })
-            .catch((error) => {
-                console.error("Error fetching card data:", error);
-            });
-    }, []);
+    // useEffect(() => {
+    //     fetch("https://db.ygoprodeck.com/api/v7/cardinfo.php")
+    //         .then((response) => response.json())
+    //         .then((data) => {
+    //             console.log("Yu-Gi-Oh! Card Data:", data);
+    //             setCards(data.data);
+    //         })
+    //         .catch((error) => {
+    //             console.error("Error fetching card data:", error);
+    //         });
+    // }, []);
 
     useEffect(() => {
         if (dowload_deck) {

@@ -2,10 +2,11 @@ import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
+import { GlobalProvider } from "./global_context.jsx";
 import './index.css';
 import App from './App/App.jsx';
 import R2t from './raw_to_ydk/r2t.jsx';
-import Card_list from './card/card_db.jsx';
+import Card_list from './card/cardList.jsx';
 
 const pageComponents = {
   Cards: <Card_list />,
@@ -27,12 +28,17 @@ function Navigation() {
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <Router>
-      <Navigation />
-      <Routes>
-        <Route path="/Raw2YDK/" element={<R2t />} />
-        <Route path="/Raw2YDK/:pageId" element={<HandlePage />} />
-      </Routes>
-    </Router>
+    <GlobalProvider>
+      <Router>
+        <Navigation />
+        <Routes>
+
+          <Route path="/Raw2YDK/" element={<R2t />} />
+          <Route path="/Raw2YDK/:pageId" element={<HandlePage />} />
+
+        </Routes>
+
+      </Router>
+    </GlobalProvider>
   </StrictMode>
 );
