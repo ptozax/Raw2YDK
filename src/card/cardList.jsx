@@ -22,7 +22,7 @@ function CardList() {
                 const matchesSearch = card.name.toLowerCase().includes(searchQuery.toLowerCase());
                 const matchesType = selectedType === 'All' || card.type.includes(selectedType) ;
                 return matchesSearch && matchesType;
-        }).slice(0, 200);
+        }).slice(0, 204);
 
         const handleTypeChange = (e) => {
                 setSelectedType(e.target.value);
