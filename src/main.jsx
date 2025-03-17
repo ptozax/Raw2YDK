@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import { HashRouter as Router, Routes, Route, Link } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
@@ -21,7 +21,7 @@ function HandlePage() {
 function Navigation() {
   return (
     <nav>
-      <Link to="/Raw2YDK/">Home</Link> | <Link to="/Raw2YDK/Cards">Cards Info</Link>
+      <Link to="/">Home</Link> | <Link to="/Cards">Cards Info</Link>
     </nav>
   );
 }
@@ -33,8 +33,8 @@ createRoot(document.getElementById('root')).render(
         <Navigation />
         <Routes>
 
-          <Route path="/Raw2YDK/" element={<R2t />} />
-          <Route path="/Raw2YDK/:pageId" element={<HandlePage />} />
+          <Route path="/" element={<R2t />} />
+          <Route path="/:pageId" element={<HandlePage />} />
 
         </Routes>
 
