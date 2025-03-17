@@ -16,11 +16,11 @@ function CardList() {
         const handleCardSelect = (card) => {
                 setSelectedCard(card);
                 setShowModal(true); // Show modal when card is selected
-       
-   
+
+
         };
 
-     
+
 
         const filteredCards = Cards.filter((card) => {
                 const matchesSearch = card.name.toLowerCase().includes(searchQuery.toLowerCase());
@@ -46,22 +46,7 @@ function CardList() {
                 <>
                         <div className="app container-fluid">
                                 <div className="row">
-                                        {/* Left Side: Selected Card */}
-                                        {/* <div className="col-md-4 selected-card p-3">
-                                                {selectedCard ? (
-                                                        <div>
-                                                                <h2>{selectedCard.name}</h2>
-                                                                <img className="selected-img img-fluid" src={selectedCard.card_images[0].image_url_small} alt={selectedCard.name} />
-                                                                <p><strong>Type:</strong> {selectedCard.type}</p>
-                                                                <p><strong>Description:</strong> {selectedCard.desc}</p>
-                                                                <p><strong>TH-Description:</strong> {th_desc(selectedCard.id)}</p>
-                                                        </div>
-                                                ) : (
-                                                        <p>Select a card to see its details.</p>
-                                                )}
-                                        </div> */}
-
-                                        {/* Right Side: Search and Card List */}
+              
                                         <div className="col-md-12 card-list">
                                                 <div className="search-filter mb-4">
                                                         <input
@@ -96,29 +81,37 @@ function CardList() {
                                         </div>
                                 </div>
                         </div>
+                        {selectedCard && (
+                                <div className={`modal fade ${showModal ? 'show d-block' : ''}`} tabIndex="-1" role="dialog" onClick={() => setShowModal(false)}>
+                                        <div className="modal-dialog modal-dialog-centered" role="document" >
+                                                <div className="modal-content">
+                                                        <div className="modal-header">
+                                                                <h5 className="modal-title">{selectedCard.name}</h5>
+                                                                <button type="button" className="btn-close" onClick={() => setShowModal(false)}></button>
+                                                        </div>
+             
+                                                        <div className="container-fluid">
+                                                                <div className="row">
+                                                                        <div className="col-md-6 col-sm-12">
+                                                                                <img className="img-fluid mb-3" src={selectedCard.card_images?.[0]?.image_url_small} alt={selectedCard.name} />
+                                                                                <p><strong>Type:</strong> {selectedCard.type}</p>
 
-            {/* Bootstrap Modal for Selected Card */}
-            {selectedCard && (
-                <div className={`modal fade ${showModal ? 'show d-block' : ''}`} tabIndex="-1" role="dialog"  onClick={() => setShowModal(false)}>
-                    <div className="modal-dialog modal-dialog-centered" role="document" >
-                        <div className="modal-content">
-                            <div className="modal-header">
-                                <h5 className="modal-title">{selectedCard.name}</h5>
-                                <button type="button" className="btn-close" onClick={() => setShowModal(false)}></button>
-                            </div>
-                            <div className="modal-body text-center">
-                                <img className="img-fluid mb-3" src={selectedCard.card_images?.[0]?.image_url_small} alt={selectedCard.name} />
-                                <p><strong>Type:</strong> {selectedCard.type}</p>
-                                <p><strong>Description:</strong> {selectedCard.desc}</p>
-                                <p><strong>TH-Description:</strong> {th_desc(selectedCard.id)}</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            )}
 
-            {/* Backdrop for Modal */}
-            {/* {showModal && <div className="modal-backdrop fade show" onClick={() => setShowModal(false)}></div>} */}
+                                                                        </div>
+                                                                        <div className="col-md-6 col-sm-12">
+                                                                                <p><strong>Description:</strong> {selectedCard.desc}</p>
+                                                                                <p><strong>TH-Description:</strong> {th_desc(selectedCard.id)}</p>
+
+                                                                        </div>
+                                                                </div>
+
+                                                        </div>
+                                                </div>
+                                        </div>
+                                </div>
+                        )}
+
+                        {/* {showModal && <div className="modal-backdrop fade show" onClick={() => setShowModal(false)}></div>} */}
 
 
 
