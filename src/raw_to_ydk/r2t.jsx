@@ -1,10 +1,11 @@
 import { useState, useEffect } from "react";
 import { useGlobalContext } from "../global_context.jsx";
+import "./r2t.css"
 
 function R2t() {
     const [text, setText] = useState("");
     // const [Cards, setCards] = useState([]);
-    const { Cards, setCards} = useGlobalContext();
+    const { Cards, setCards } = useGlobalContext();
     const [dowload_deck, setDownload_deck] = useState("");
 
     // useEffect(() => {
@@ -63,18 +64,20 @@ function R2t() {
     }
 
     return (
-        <div className="flex flex-col items-center p-4 space-y-4">
-            <h1 className="text-2xl font-bold">Text to File Converter</h1>
-            <textarea
-                className="w-80 h-40 p-2 border rounded"
-                placeholder="Enter text here..."
-                value={text}
-                onChange={(e) => setText(e.target.value)}
-            />
-            <button onClick={PreDownload} disabled={!text} className="p-2 bg-blue-500 text-white rounded">
-                Download as .ydk
-            </button>
-        </div>
+     <>
+            <div className="flex flex-col items-center p-4 space-y-4">
+                <h1 className="text-2xl font-bold text1">Convert Yu-Gi-Oh card game files</h1>
+                <textarea
+                    className="p-2 border rounded box-file"
+                    placeholder="Enter text here..."
+                    value={text}
+                    onChange={(e) => setText(e.target.value)}
+                />
+                <button onClick={PreDownload} disabled={!text} className="p-2 bg-blue-500 text-white rounded">
+                    Download as .ydk
+                </button>
+            </div>
+   </>
     );
 }
 
