@@ -46,7 +46,7 @@ function CardList() {
                 <>
                         <div className="app container-fluid">
                                 <div className="row">
-              
+
                                         <div className="col-md-12 card-list">
                                                 <div className="search-filter mb-4">
                                                         <input
@@ -82,14 +82,17 @@ function CardList() {
                                 </div>
                         </div>
                         {selectedCard && (
-                                <div className={`modal fade ${showModal ? 'show d-block' : ''}`} tabIndex="-1" role="dialog" onClick={() => setShowModal(false)}>
-                                        <div className="modal-dialog modal-dialog-centered" role="document" >
+                                <div className={`modal fade ${showModal ? 'show d-block' : ''}`} tabIndex="-1" role="dialog" 
+                                onClick={(e) => {
+                                        if (e.target.classList.contains('modal')) {
+                                                        setShowModal(false);}
+                                                        }}>
+                                        <div className="modal-dialog modal-dialog-centered" role="document">
                                                 <div className="modal-content">
                                                         <div className="modal-header">
                                                                 <h5 className="modal-title">{selectedCard.name}</h5>
                                                                 <button type="button" className="btn-close" onClick={() => setShowModal(false)}></button>
                                                         </div>
-             
                                                         <div className="container-fluid">
                                                                 <div className="row">
                                                                         <div className="col-md-6 col-sm-12">
@@ -111,7 +114,14 @@ function CardList() {
                                 </div>
                         )}
 
-                        {/* {showModal && <div className="modal-backdrop fade show" onClick={() => setShowModal(false)}></div>} */}
+
+                        {showModal && (
+                                <div
+                                        className="modal-backdrop fade show"
+                                        style={{ zIndex: 1040 }}
+                                        onClick={() => setShowModal(false)}
+                                ></div>
+                        )}
 
 
 
