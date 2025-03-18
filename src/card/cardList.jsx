@@ -82,11 +82,12 @@ function CardList() {
                                 </div>
                         </div>
                         {selectedCard && (
-                                <div className={`modal fade ${showModal ? 'show d-block' : ''}`} tabIndex="-1" role="dialog" 
-                                onClick={(e) => {
-                                        if (e.target.classList.contains('modal')) {
-                                                        setShowModal(false);}
-                                                        }}>
+                                <div className={`modal fade ${showModal ? 'show d-block' : ''}`} tabIndex="-1" role="dialog"
+                                        onClick={(e) => {
+                                                if (e.target.classList.contains('modal')) {
+                                                        setShowModal(false);
+                                                }
+                                        }}>
                                         <div className="modal-dialog modal-dialog-centered" role="document">
                                                 <div className="modal-content">
                                                         <div className="modal-header">
