@@ -7,10 +7,12 @@ import './index.css';
 import App from './App/App.jsx';
 import R2t from './raw_to_ydk/r2t.jsx';
 import Card_list from './card/cardList.jsx';
+import Home from './home/home.jsx';
 
 const pageComponents = {
   Cards: <Card_list />,
-  Default: <R2t />,
+  Convert:<R2t/>,
+  Default: <Home/>,
 };
 
 function HandlePage() {
@@ -21,7 +23,7 @@ function HandlePage() {
 function Navigation() {
   return (
     <nav>
-      <Link to="/">Home</Link> | <Link to="/Cards">Cards Info</Link>
+      <Link to="/">Home</Link> | <Link to="/Cards">Cards Info</Link> | <Link to="/Convert">Convert Text To YDK</Link>
     </nav>
   );
 }
@@ -33,7 +35,7 @@ createRoot(document.getElementById('root')).render(
         <Navigation />
         <Routes>
 
-          <Route path="/" element={<R2t />} />
+          <Route path="/" element={<Home />} />
           <Route path="/:pageId" element={<HandlePage />} />
 
         </Routes>
