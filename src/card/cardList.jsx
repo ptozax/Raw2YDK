@@ -9,6 +9,7 @@ function CardList() {
         const [selectedCard, setSelectedCard] = useState(null);
         const [searchQuery, setSearchQuery] = useState('');
         const [selectedType, setSelectedType] = useState('All');
+        const [selectedSet, setSelectedSet] = useState(null);
         const [showModal, setShowModal] = useState(false); // New state for modal visibility
 
 
@@ -20,12 +21,24 @@ function CardList() {
 
         };
 
+        const handleSetClick = (setName) => {
+                setSearchQuery(''); // Clear the search query when filtering by set
+                setSelectedSet(setName);
+                setShowModal(false); // Close the modal when filtering by set
+        };
 
+
+        const handleClearSetClick = () => {
+                setSelectedSet(null);
+                setShowModal(false); // Close the modal when filtering by set
+        };
 
         const filteredCards = Cards.filter((card) => {
                 const matchesSearch = card.name.toLowerCase().includes(searchQuery.toLowerCase());
                 const matchesType = selectedType === 'All' || card.type.includes(selectedType);
-                return matchesSearch && matchesType;
+                const matchesSet = !selectedSet || card.card_sets?.some(set => set.set_name === selectedSet);
+
+                return matchesSearch && matchesType && matchesSet;
         }).slice(0, 204);
 
         const handleTypeChange = (e) => {
@@ -49,22 +62,44 @@ function CardList() {
 
                                         <div className="col-md-12 card-list">
                                                 <div className="search-filter mb-4">
-                                                        <input
-                                                                type="text"
-                                                                className="form-control mb-3"
-                                                                placeholder="Search for a card..."
-                                                                value={searchQuery}
-                                                                onChange={(e) => setSearchQuery(e.target.value)}
-                                                        />
-                                                        <div>
-                                                                <label htmlFor="card-type" className="mr-2">Filter by Type:</label>
-                                                                <select id="card-type" className="form-select" value={selectedType} onChange={handleTypeChange}>
-                                                                        <option value="All">All</option>
-                                                                        <option value="Monster">Monster</option>
-                                                                        <option value="Spell">Spell</option>
-                                                                        <option value="Trap">Trap</option>
-                                                                </select>
+                                                        <div className="container-fluid selected-detail" >
+                                                                <div className="row">
+                                                                        <div className="col-md-12  ">
+                                                                                <input
+                                                                                        type="text"
+                                                                                        className="form-control mb-3"
+                                                                                        placeholder="Search for a card..."
+                                                                                        value={searchQuery}
+                                                                                        onChange={(e) => setSearchQuery(e.target.value)}
+                                                                                />
+                                                                        </div>
+                                                                        <div className="col-md-6">
+                                                                                <select id="card-type" className="form-select" value={selectedType} onChange={handleTypeChange}>
+                                                                                        <option value="All">Select Type</option>
+                                                                                        <option value="Monster">Monster</option>
+                                                                                        <option value="Spell">Spell</option>
+                                                                                        <option value="Trap">Trap</option>
+                                                                                </select>
+                                                                        </div>
+                                                                        <div className="col-md-6 ">
+                                                                                {selectedSet && (
+
+                                                                                        <button  className="btn btn-outline-primary btn-sm me-2 mb-2"
+                                                                                                onClick={() => handleClearSetClick()}>
+                                                                                                {selectedSet} | X
+                                                                                        </button>
+
+
+
+                                                                                )}
+                                                                        </div>
+
+
+                                                                </div>
                                                         </div>
+
+
+
                                                 </div>
 
                                                 <div className="card-thumbnails row">
@@ -94,17 +129,31 @@ function CardList() {
                                                                 <h5 className="modal-title">{selectedCard.name}</h5>
                                                                 <button type="button" className="btn-close" onClick={() => setShowModal(false)}></button>
                                                         </div>
-                                                        <div className="container-fluid">
+                                                        <div className="container-fluid selected-detail" >
                                                                 <div className="row">
                                                                         <div className="col-md-6 col-sm-12">
+
+
                                                                                 <img className="img-fluid mb-3" src={selectedCard.card_images?.[0]?.image_url_small} alt={selectedCard.name} />
                                                                                 <p><strong>Type:</strong> {selectedCard.type}</p>
+
+
 
 
                                                                         </div>
                                                                         <div className="col-md-6 col-sm-12">
                                                                                 <p><strong>Description:</strong> {selectedCard.desc}</p>
                                                                                 <p><strong>TH-Description:</strong> {th_desc(selectedCard.id)}</p>
+                                                                                <hr />
+                                                                                <strong>Card Sets</strong>
+                                                                                <div className="selected-detail" >
+                                                                                        {selectedCard.card_sets?.map((set, index) => (
+                                                                                                <button key={index} className="btn btn-outline-primary btn-sm me-2 mb-2"
+                                                                                                        onClick={() => handleSetClick(set.set_name)}>
+                                                                                                        {set.set_name}
+                                                                                                </button>
+                                                                                        ))}
+                                                                                </div>
 
                                                                         </div>
                                                                 </div>
