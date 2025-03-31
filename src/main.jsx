@@ -8,6 +8,7 @@ import App from './App/App.jsx';
 import R2t from './raw_to_ydk/r2t.jsx';
 import Card_list from './card/cardList.jsx';
 import Home from './home/home.jsx';
+import AppNavbar from './Component/AppNavbar.jsx';
 
 const pageComponents = {
   Cards: <Card_list />,
@@ -32,7 +33,8 @@ createRoot(document.getElementById('root')).render(
   <StrictMode>
     <GlobalProvider>
       <Router>
-        <Navigation />
+        <AppNavbar/>
+        {/* <Navigation /> */}
         <Routes>
 
           <Route path="/" element={<Home />} />
