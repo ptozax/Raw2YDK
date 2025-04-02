@@ -9,6 +9,7 @@ import R2t from './raw_to_ydk/r2t.jsx';
 import Card_list from './card/cardList.jsx';
 import Home from './home/home.jsx';
 import AppNavbar from './Component/AppNavbar.jsx';
+import CardDetail from './card/cardDetail.jsx';
 
 const pageComponents = {
   Cards: <Card_list />,
@@ -39,6 +40,7 @@ createRoot(document.getElementById('root')).render(
 
           <Route path="/" element={<Home />} />
           <Route path="/:pageId" element={<HandlePage />} />
+          <Route path="/Cards/:cardId" element={<CardDetail />} />
 
         </Routes>
 
