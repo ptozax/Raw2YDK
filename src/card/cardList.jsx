@@ -58,9 +58,9 @@ function CardList() {
         return (
                 <>
                         <div className="app container-fluid">
-                                <div className="row">
+                                <div className="row justify-content-md-center">
 
-                                        <div className="col-md-12 card-list">
+                                        <div className="col-md-10 card-list">
                                                 <div className="search-filter mb-4">
                                                         <div className="container-fluid selected-detail" >
                                                                 <div className="row">
