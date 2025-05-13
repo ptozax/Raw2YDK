@@ -63,7 +63,7 @@ function AppNavbar() {
                 </Navbar.Brand>
                 <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                 <Navbar.Collapse id="responsive-navbar-nav">
-                    <Nav className="me-auto">
+                    <Nav className="me-auto text-center">
                         {mainNavLinks.map((item) => (
                             <Nav.Link
                                 key={item.key}

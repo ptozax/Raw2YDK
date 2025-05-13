@@ -131,7 +131,7 @@ function CardList() {
                                                         </div>
                                                         <div className="container-fluid selected-detail" >
                                                                 <div className="row">
-                                                                        <div className="col-md-6 col-sm-12">
+                                                                        <div className="col-md-6 col-sm-12 text-center">
 
 
                                                                                 <img className="img-fluid mb-3" src={selectedCard.card_images?.[0]?.image_url_small} alt={selectedCard.name} />
